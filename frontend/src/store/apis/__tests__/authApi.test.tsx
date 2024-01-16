@@ -10,7 +10,6 @@ import {
   LoginCredentials,
 } from "../../interfaces/authInterfaces";
 import {
-  errorMutation,
   rejectedMutation,
   fulfilledMutation,
   pendingMutation,
