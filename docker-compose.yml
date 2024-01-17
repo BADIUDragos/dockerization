@@ -3,7 +3,7 @@ version: '3.9'
 services:
   backend:
     volumes:
-      - static:app/static
+      - static_volume:/static
     env_file:
       - backend/backend/.env
     build:
@@ -26,21 +26,21 @@ services:
     build:
       context: ./frontend
     volumes:
-      - frontend:/app/build
+      - frontend:/var/www/frontend
 
   nginx:
     build:
       context: ./nginx
     volumes:
-      - static:/static
+      - static_volume:/static
       - frontend:/var/www/frontend
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - backend
       - frontend
 
 volumes:
   postgres_data:
-  static:
+  static_volume:
   frontend:
