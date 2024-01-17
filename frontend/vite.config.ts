@@ -12,6 +12,6 @@ export default defineConfig({
 
   },
   build: {
-    outDir: '/var/www/frontend'
+    outDir: '/var/www/frontend' 
   }
 });
