@@ -40,7 +40,9 @@ const Header: React.FC<IHeader> = ({ className }) => {
                 className="ml-3 cursor-pointer"
                 onClick={handleLogout}
               >
+                <Navbar.Text className="ml-3">
                 Logout
+                </Navbar.Text>
               </Nav.Link>
             </>
           ) : (
