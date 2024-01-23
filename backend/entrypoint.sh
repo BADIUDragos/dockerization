@@ -1,5 +1,16 @@
 #!/bin/sh
 
+wait_for_db() {
+  until nc -z $1 $2; do
+    echo "Waiting for database connection..."
+    sleep 5
+  done
+}
+
+wait_for_db db 5432
+
+echo "Database connection established."
+
 python manage.py makemigrations
 python manage.py migrate --no-input
 python manage.py collectstatic --no-input

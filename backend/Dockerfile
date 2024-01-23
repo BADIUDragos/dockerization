@@ -9,7 +9,9 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
 COPY . /app
 WORKDIR /app
 
-RUN pip install -r ./requirements.txt
+RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --no-cache-dir -r ./requirements.txt
 
 COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
@@ -27,7 +29,7 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 #
 # nginx conf volume in docker-compose
 #
-# map db data to localfolder instead of volume
+# map db data to localfolder instead of volume   done = check wait for db server to be on
 #
 # secret key
 #

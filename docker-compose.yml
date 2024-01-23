@@ -16,7 +16,7 @@ services:
   db:
     image: postgres:16.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - C:/Users/drago/Desktop/dockerization/db_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Maudeg12.34
