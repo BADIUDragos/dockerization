@@ -32,7 +32,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", '127.0.0.1', "api"]
+ALLOWED_HOSTS = ["localhost", '127.0.0.1', "backend"]
 
 
 # Application definition
@@ -166,6 +166,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://0.0.0.0',
-    'http://localhost/api/'
+    'http://localhost'
 ]
 

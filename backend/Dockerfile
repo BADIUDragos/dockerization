@@ -1,12 +1,15 @@
 FROM python:3.11-slim
 
-RUN pip install --upgrade pip
-
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt --no-cache
+ENV PIP_DEFAULT_TIMEOUT=100 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1\
+    POETRY_VERSION=1.3.2
 
 COPY . /app
 WORKDIR /app
+
+RUN pip install -r ./requirements.txt
 
 COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
