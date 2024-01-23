@@ -29,7 +29,7 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 #
 # nginx conf volume in docker-compose
 #
-# map db data to localfolder instead of volume   done = check wait for db server to be on
+# map db data to localfolder instead of volume   done - match path mathing file with .env file ?
 #
 # secret key
 #
@@ -39,4 +39,6 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 #
 # try removing port 8000 docker-compose backend
 #
-# db ckeck entrypoint connection ?
+# db ckeck entrypoint connection                 done
+#
+# logs
