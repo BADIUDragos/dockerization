@@ -3,7 +3,7 @@ version: '3.9'
 services:
   backend:
     volumes:
-      - static_volume:/static
+      - static_volume:/app/static
     env_file:
       - backend/backend/.env
     build:
@@ -14,7 +14,7 @@ services:
       - db
 
   db:
-    image: postgres:15
+    image: postgres:16.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -26,13 +26,13 @@ services:
     build:
       context: ./frontend
     volumes:
-      - frontend:/var/www/frontend
+      - frontend:/app/dist/
 
   nginx:
     build:
       context: ./nginx
     volumes:
-      - static_volume:/static
+      - static_volume:/backend_static/
       - frontend:/var/www/frontend
     ports:
       - "80:80"

@@ -4,7 +4,7 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     PYTHONUNBUFFERED=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=1\
-    POETRY_VERSION=1.3.2
+    PYTHONDONTWRITEBYTECODE=1
 
 COPY . /app
 WORKDIR /app
@@ -15,21 +15,21 @@ COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 
 
-#pythonbuffered
-#python cache
-#requirements and static not in root
+# pythonbuffered                                 done
+# python cache                                   done
+# requirements and static not in root            done
 #
-#users per service
+# users per service
 #
-#frontend volume install logic, dist build
+# frontend volume install logic, dist build      done
 #
-#node version
+# node version                                   done
 #
-#nginx conf volume in docker-compose
+# nginx conf volume in docker-compose
 #
-#map db data to localfolder instead of volume
+# map db data to localfolder instead of volume
 #
-# ecret key
+# secret key
 #
 # volumes for nginx and backend
 #

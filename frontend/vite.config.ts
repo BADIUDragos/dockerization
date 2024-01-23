@@ -9,9 +9,5 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     include: ["**/?(*.)test.ts?(x)"],
-
-  },
-  build: {
-    outDir: '/var/www/frontend' 
   }
 });
