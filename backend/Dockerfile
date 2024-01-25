@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/l
 
 RUN pip install --no-cache-dir -r ./requirements.txt
 
+RUN addgroup --system app && adduser --system --ingroup app app
+USER app
+
 COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 
@@ -31,7 +34,7 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 #
 # map db data to localfolder instead of volume   done - match path mathing file with .env file ?
 #
-# secret key
+# secret key                                     done
 #
 # volumes for nginx and backend                  done
 #
