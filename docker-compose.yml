@@ -8,12 +8,13 @@ services:
       - backend/backend/.env
     build:
       context: ./backend
-    user: app
+    ports:
+      - "8000:8000"
     depends_on:
       - db
 
   db:
-    image: postgres:16-alpine
+    image: postgres:16.0-alpine
     volumes:
       - ${DB_LOCAL_DATA_PATH}:/var/lib/postgresql/data
     environment:
@@ -28,12 +29,11 @@ services:
       - frontend:/app/dist/
 
   nginx:
-    image: nginx:1.24-alpine
+    build:
+      context: ./nginx
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - static_volume:/backend_static/
       - frontend:/var/www/frontend
-    user: nginx
     ports:
       - "80:80"
     depends_on:
