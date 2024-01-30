@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 ENV PIP_DEFAULT_TIMEOUT=100 \
     PYTHONUNBUFFERED=1 \
@@ -9,10 +9,10 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r ./requirements.txt
 
+RUN apk update && apk add --no-cache netcat-openbsd
+
 COPY . /app
 WORKDIR /app
-
-RUN apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
 
 COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
@@ -28,7 +28,7 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 #
 # node version                                   done
 #
-# nginx conf volume in docker-compose
+# nginx conf volume in docker-compose            done
 #
 # map db data to localfolder instead of volume   done - match path mathing file with .env file ?
 #

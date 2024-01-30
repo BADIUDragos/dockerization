@@ -6,14 +6,9 @@ services:
       - static_volume:/app/static
       - ${LOCAL_FOLDER_LOGS_PATH}:/var/log/nginx
     env_file:
-      - backend/backend/.env
+      - ./.env
     build:
       context: ./backend
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
     depends_on:
       - db
 
