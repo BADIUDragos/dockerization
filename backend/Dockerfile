@@ -6,15 +6,15 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     PIP_NO_CACHE_DIR=1\
     PYTHONDONTWRITEBYTECODE=1
 
+WORKDIR /app
+
+RUN apk update && apk add --no-cache netcat-openbsd
+COPY ./entrypoint.sh .
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r ./requirements.txt
 
-RUN apk update && apk add --no-cache netcat-openbsd
+COPY . .
 
-COPY . /app
-WORKDIR /app
-
-COPY ./entrypoint.sh .
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 
 
@@ -77,7 +77,7 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 
 
 # rootless / user per service
-#   - rootless running docker itself not root on the machine ?
+#   - rootless running docker itself not root on the machine
 #   - different from user vs root inside conainer
 #   - rootless AND user per service ?
 #   - need to install full ubuntu image on my laptop because now I have alpine and I don't
