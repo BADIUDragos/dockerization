@@ -74,11 +74,10 @@ ENTRYPOINT ["sh", "/app/entrypoint.sh"]
  #      - "24224:24224/udp"
 
 
-
-
 # rootless / user per service
 #   - rootless running docker itself not root on the machine
 #   - different from user vs root inside conainer
 #   - rootless AND user per service ?
 #   - need to install full ubuntu image on my laptop because now I have alpine and I don't
 
+# link code version release to image
