@@ -4,7 +4,6 @@ services:
   backend:
     volumes:
       - static_volume:/app/static
-      - ${LOCAL_FOLDER_LOGS_PATH}:/var/log/nginx
     env_file:
       - ./.env
     build:
@@ -15,7 +14,7 @@ services:
   db:
     image: postgres:16-alpine
     volumes:
-      - ${DB_LOCAL_DATA_PATH}:/var/lib/postgresql/data
+      - ${HOST_MACHINE_DB_DATA_PATH}:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
