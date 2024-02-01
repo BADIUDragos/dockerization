@@ -1,5 +1,7 @@
 *.pyc
 __pycache__/
 frontend/node_modules/
+backend/logs/
 *.idea
 /db_data/
+
