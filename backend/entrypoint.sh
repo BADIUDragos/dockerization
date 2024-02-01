@@ -1,15 +1,25 @@
 #!/bin/sh
 
-wait_for_db() {
-  until nc -z $1 $2; do
-    echo "Waiting for database connection..."
-    sleep 5
-  done
-}
+python - <<END
+import socket
+import time
 
-wait_for_db db 5432
+def wait_for_db(host='db', port=5432, timeout=60):
+    start_time = time.time()
+    while True:
+        try:
+            with socket.create_connection((host, port), timeout=timeout):
+                print("Database connection established.")
+                break
+        except socket.error as ex:
+            print(f"Waiting for database connection: {ex}")
+            time.sleep(5)
+            if time.time() - start_time > timeout:
+                print("Database connection timed out.")
+                break
 
-echo "Database connection established."
+wait_for_db()
+END
 
 python manage.py makemigrations
 python manage.py migrate --no-input

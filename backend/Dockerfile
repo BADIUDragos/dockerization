@@ -8,7 +8,6 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
 
 WORKDIR /app
 
-RUN apk update && apk add --no-cache netcat-openbsd
 COPY ./entrypoint.sh .
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r ./requirements.txt
