@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", '127.0.0.1', "backend"]
 
@@ -166,6 +166,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost'
 ]
 
+log_level = 'DEBUG' if DEBUG else 'ERROR'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -177,7 +179,7 @@ LOGGING = {
     },
     'handlers': {
         'file': {
-            'level': 'DEBUG',
+            'level': log_level,
             'class': 'logging.FileHandler',
             'filename': '/app/logs/backend_log.txt',
             'formatter': 'verbose',
@@ -186,7 +188,7 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': log_level,
             'propagate': True,
         },
     },
